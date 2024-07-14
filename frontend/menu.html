@@ -1,0 +1,46 @@
+<!-- menu.html -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="images/logo_JO.jpg" alt="Logo" style="height: 40px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="billetterie.html">Billet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Hospitalité</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Transport</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Boutique</a>
+            </li>
+        </ul>
+        <a href="authentification.html"class="btn btn-outline-success my-2 my-sm-0" type="button">Se connecter</a>
+    </div>
+</nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+        const userName = localStorage.getItem('userName');
+
+        if (isAuthenticated) {
+            document.getElementById('user-name').innerText = userName;
+            document.getElementById('login-button').innerText = 'Déconnexion';
+            document.getElementById('login-button').addEventListener('click', function() {
+                localStorage.removeItem('isAuthenticated');
+                localStorage.removeItem('userName');
+                window.location.href = 'index.html';
+            });
+        } else {
+            document.getElementById('login-button').addEventListener('click', function() {
+                window.location.href = 'authentification.html';
+            });
+        }
+    });
+</script>

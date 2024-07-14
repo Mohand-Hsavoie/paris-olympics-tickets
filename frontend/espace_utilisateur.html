@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styleMenu.css">
+    <title>Espace Utilisateur</title>
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>Olympics Ticketing</title>
 </head>
 <body>
     <div id="menu-container"></div>
@@ -19,11 +18,20 @@
             });
     </script>
 
-    <h1>Bienvenue sur notre site</h1>
-    <p>Contenu de la page d'accueil...</p>
+    <div class="container mt-5">
+        <h1>Espace Utilisateur</h1>
+        <h2>Bonjour, <span id="user-name"></span></h2>
+        <h3>Vos achats</h3>
+        <div id="achats-container">
+            <!-- Les achats seront chargés ici -->
+        </div>
+    </div>
+
+    <!-- Scripts JS de Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Inclure votre propre fichier JS -->
+    <script src="js/espace_utilisateur.js"></script>
 </body>
 </html>
-
