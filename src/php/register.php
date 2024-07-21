@@ -1,34 +1,58 @@
 <?php
-include 'config.php';
+// Afficher les erreurs
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $first_name = $_POST['register-firstname'];
-    $last_name = $_POST['register-lastname'];
-    $email = $_POST['register-email'];
-    $password = password_hash($_POST['register-password'], PASSWORD_BCRYPT);
-    $country = $_POST['register-country'];
-    $phone_number = $_POST['register-phone'];
-    $first_key = bin2hex(random_bytes(16)); // Générer une clé unique de 32 caractères
+require_once 'config.php'; // Charger la configuration de la base de données
 
-    // Préparer l'instruction SQL
-    $sql = "INSERT INTO users (first_name, last_name, email, password, country, phone_number, first_key)
-            VALUES (?, ?, ?, ?, ?, ?, ?)";
+if (!$link) {
+    die('Erreur de connexion : ' . mysqli_connect_error());
+}
+echo "Connexion réussie à la base de données!<br>";
 
-    // Préparer et exécuter la requête
-    if ($stmt = mysqli_prepare($link, $sql)) {
-        mysqli_stmt_bind_param($stmt, "sssssss", $first_name, $last_name, $email, $password, $country, $phone_number, $first_key);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            echo "Inscription réussie!";
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Vérification des données reçues
+    echo '<pre>';
+    var_dump($_POST);
+    echo '</pre>';
+
+    // Récupération des données du formulaire
+    $firstName = $_POST['firstname'] ?? '';
+    $lastName = $_POST['lastname'] ?? '';
+    $email = $_POST['email'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $country = $_POST['country'] ?? '';
+    $phone = $_POST['phone'] ?? '';
+
+    if ($firstName && $lastName && $email && $password && $country && $phone) {
+        // Hashage du mot de passe
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+        // Génération de la clé unique
+        $firstKey = bin2hex(random_bytes(16));
+
+        // Préparation de la requête d'insertion
+        $sql = "INSERT INTO users (first_name, last_name, email, password, country, phone_number, first_key) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        if ($stmt = mysqli_prepare($link, $sql)) {
+            mysqli_stmt_bind_param($stmt, "sssssss", $firstName, $lastName, $email, $hashedPassword, $country, $phone, $firstKey);
+            if (mysqli_stmt_execute($stmt)) {
+                echo "Compte créé avec succès !";
+            } else {
+                echo "Erreur lors de la création du compte : " . mysqli_error($link);
+            }
         } else {
-            echo "Erreur: " . mysqli_stmt_error($stmt);
+            echo "Erreur de préparation de la requête : " . mysqli_error($link);
         }
-        
+
+        // Fermer la déclaration
         mysqli_stmt_close($stmt);
     } else {
-        echo "Erreur de préparation: " . mysqli_error($link);
+        echo "Veuillez remplir tous les champs.";
     }
-
-    mysqli_close($link);
 }
+
+// Fermer la connexion
+mysqli_close($link);
 ?>
