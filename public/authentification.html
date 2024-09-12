@@ -10,7 +10,7 @@
 <body>
 <div id="menu-container"></div>
 <script>
-    fetch('menu.html')
+    fetch('menu.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('menu-container').innerHTML = data;
@@ -18,10 +18,10 @@
 </script>
 <div class="container mt-5">
     <div class="row">
-        <!-- Formulaire de connexion -->
+      <!--Formulaire de connexion--> 
         <div class="col-md-6">
             <h2 class="text-center">Se connecter</h2>
-            <form method="post" action="src/php/login.php">
+            <form method="post" action="../src/php/login.php">
                 <div class="form-group">
                     <input type="email" class="form-control" id="login-email" name="email" placeholder="Adresse e-mail*" required>
                 </div>
@@ -39,7 +39,7 @@
             <h2 class="text-center">Créer un compte</h2>
             <form method="post" action="../src/php/register.php">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="register-firstname" name="firs_tname" placeholder="Prénom" required>
+                    <input type="text" class="form-control" id="register-firstname" name="first_name" placeholder="Prénom" required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" id="register-lastname" name="last_name" placeholder="Nom" required>
@@ -314,7 +314,6 @@
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="terms" required>
                     <label class="form-check-label" for="terms">J'accepte les conditions générales</label>
-                    </select>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Valider</button>
             </form>
@@ -326,7 +325,5 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!--  fichier JS -->
-<script src="js/script.js"></script>
 </body>
 </html>
