@@ -1,20 +1,20 @@
 <?php
-// Connexion à la base de données
-$servername = "localhost"; 
-$username = "root";        
-$password = "";    
-$dbname = "olympics_ticketing";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+require_once ('../src/php/config.php');
+session_start();
+// Vérifier si l'utilisateur est authentifié
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger vers la page d'authentification si l'utilisateur n'est pas connecté
+    header('Location:authentification.html');
+    exit();
+}
 // Vérifier la connexion
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($link->connect_error) {
+    die("Connection failed: " . $link->connect_error);
 }
 
 // Requête pour obtenir les types de tickets et leurs prix
 $sql = "SELECT name, price FROM ticket_types";
-$result = $conn->query($sql);
+$result = $link->query($sql);
 $ticketPrices = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
 }
 
 // Fermer la connexion à la base de données
-$conn->close();
+$link->close();
 ?>
 <!DOCTYPE html>
 <html lang="fr">

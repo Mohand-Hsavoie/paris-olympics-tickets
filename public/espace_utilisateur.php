@@ -1,6 +1,5 @@
 <?php
 require_once ('../src/php/config.php');
-session_start();
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION['user_id'])) {
     // Rediriger vers la page d'authentification si l'utilisateur n'est pas connecté

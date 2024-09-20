@@ -22,8 +22,7 @@ $totalAmount = $_SESSION['total_amount'];
 $card_number = $_POST['card_number'];
 $expiry_date = $_POST['expiry_date'];
 $cvv = $_POST['cvv'];
-
-// Simuler la validation du paiement (à remplacer par une vraie API si nécessaire)
+//à remplacer par une vraie API si nécessaire)
 $payment_success = true; // Simuler que le paiement réussit toujours pour le projet
 
 if ($payment_success) {
@@ -98,7 +97,6 @@ if ($payment_success) {
             }
         }
     }
-
     // Rediriger vers une page de confirmation ou l'espace utilisateur
     header('Location: /paris-olympics-tickets/public/espace_utilisateur.php?payment=success');
     exit();
