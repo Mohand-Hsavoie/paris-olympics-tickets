@@ -1,0 +1,14 @@
+body {
+    background-image: url('../images/image1.jpg');
+    background-size: cover; /* L'image couvre tout l'écran */
+    background-position: center; /* Centre l'image */
+    background-repeat: no-repeat; /* Empêche la répétition de l'image */
+    height: 50vh; /* Prend la hauteur de la fenêtre */
+    margin: 0; /* Supprime les marges du body */
+}
+h1{
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 20%;
+}

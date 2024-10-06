@@ -1,24 +1,36 @@
 <?php
-require_once ('../src/php/config.php');
+require_once('../src/php/config.php');
+session_start();
+
 // Vérifier si l'utilisateur est authentifié
 if (!isset($_SESSION['user_id'])) {
     // Rediriger vers la page d'authentification si l'utilisateur n'est pas connecté
     header('Location:authentification.html');
     exit();
 }
+
 // Récupérer les informations de session
 $user_id = $_SESSION['user_id'];
 $first_name = $_SESSION['first_name'];
 $email = $_SESSION['email'];
 
+// Vérifier la connexion à la base de données
+if (!$link) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
 // Récupérer les billets de l'utilisateur depuis la base de données
 $query = "SELECT id FROM tickets WHERE user_id = ?";
 $stmt = $link->prepare($query);
+if ($stmt === false) {
+    die("Prepare failed: " . $link->error);
+}
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $tickets = $result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
+$link->close(); // Fermer la connexion à la base de données
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -38,7 +50,6 @@ $stmt->close();
             document.getElementById('menu-container').innerHTML = data;
         });
 </script>
-
     <div class="container mt-5">
         <h1>Espace Utilisateur</h1>
         <h2>Bonjour, <span id="user_name"><?php echo htmlspecialchars($first_name); ?></span></h2>
@@ -72,6 +83,6 @@ $stmt->close();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!--fichier JS -->
-    <script src="js/espace_utilisateur.js"></script>
+    <script src="paris-olympics-tickets/public/js/espace_utilisateur.js"></script>
 </body>
 </html>

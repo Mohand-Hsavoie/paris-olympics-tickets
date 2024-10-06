@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['first_name'] = $first_name;
                 $_SESSION['email'] = $email;
                 // Rediriger l'utilisateur vers son espace personnel
-                header('Location: ../../public/espace_utilisateur.php');
+                header('Location: /paris-olympics-tickets/public/espace_utilisateur.php');
                 exit;
             } else {
                 echo "Erreur: Impossible d'exécuter la requête. " . mysqli_stmt_error($stmt);

@@ -1,12 +1,11 @@
 <?php
 session_start();
-
+require_once '../src/php/config.php';
 // Vérifier si le panier et le montant total existent
 if (!isset($_SESSION['cart'], $_SESSION['total_amount'])) {
     header('Location: /paris-olympics-tickets/public/billetterie.php');
     exit();
 }
-
 // Récupérer les informations du panier
 $cart = $_SESSION['cart'];
 $totalAmount = $_SESSION['total_amount'];

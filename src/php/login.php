@@ -1,7 +1,8 @@
+login.php
+
 <?php
 session_start();
 require_once 'config.php';
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $email = $_POST['email'];
@@ -11,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Veuillez entrer un email et un mot de passe.";
         exit;
     }
-
     // Préparer la requête SQL pour sélectionner l'utilisateur
     $sql = "SELECT id, first_name, email, password FROM users WHERE email = ?";
     if ($stmt = mysqli_prepare($link, $sql)) {
@@ -31,9 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['first_name'] = $first_name;
                 $_SESSION['email'] = $email;
                 $_SESSION['authenticated'] = true;
-                // Redirection vers l'espace utilisateur
+                 // Redirection vers l'espace utilisateur
                 header("Location:/paris-olympics-tickets/public/espace_utilisateur.php");
-                exit;
             } else {
                 echo "Mot de passe incorrect.";
             }

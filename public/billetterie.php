@@ -1,17 +1,10 @@
 <?php
 require_once ('../src/php/config.php');
 session_start();
-// Vérifier si l'utilisateur est authentifié
-if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page d'authentification si l'utilisateur n'est pas connecté
-    header('Location:authentification.html');
-    exit();
-}
 // Vérifier la connexion
 if ($link->connect_error) {
     die("Connection failed: " . $link->connect_error);
 }
-
 // Requête pour obtenir les types de tickets et leurs prix
 $sql = "SELECT name, price FROM ticket_types";
 $result = $link->query($sql);

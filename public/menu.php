@@ -1,7 +1,7 @@
 <?php
 session_start(); // debut de session
-?>
 
+?>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
         <img src="images/logo_JO.jpg" alt="Logo" style="height: 40px;">
@@ -26,9 +26,9 @@ session_start(); // debut de session
         </ul>
         <?php if (isset($_SESSION['user_id'])): ?>
             <a href="../src/php/logout.php" class="btn btn-outline-danger my-2 my-sm-0" type="button">Déconnexion</a>
-            <a href="espace_utilisateur.php" class="btn btn-outline-success my-2 my-sm-0" type="button">Espace Utilisateur</a>
+            <a href="/paris-olympics-tickets/public/espace_utilisateur.php" class="btn btn-outline-success my-2 my-sm-0" type="button">Espace Utilisateur</a>
         <?php else: ?>
-            <a href="espace_utilisateur.php" class="btn btn-outline-success my-2 my-sm-0" type="button">Se connecter</a>
+            <a href="/paris-olympics-tickets/public/espace_utilisateur.php" class="btn btn-outline-success my-2 my-sm-0" type="button">Se connecter</a>
         <?php endif; ?>
     </div>
 </nav>

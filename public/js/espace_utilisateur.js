@@ -2,7 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
     const userName = localStorage.getItem('userName');
-
+    console.log('isAuthenticated:', isAuthenticated);
+    console.log('userName:', userName);
     if (isAuthenticated) {
         document.getElementById('user-name').innerText = userName;
         loadAchats();
