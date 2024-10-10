@@ -3,6 +3,7 @@ import os
 import mysql.connector
 from fpdf import FPDF
 import qrcode
+import db_config
 
 # Configuration de la connexion à la base de données
 db_config = {
@@ -60,7 +61,7 @@ except Exception as e:
     sys.exit()
 
 # Chemin du dossier pour sauvegarder les fichiers
-pdf_dir = 'C:/xampp/htdocs/paris-olympics-tickets/src/tickets'
+pdf_dir = 'opt/bitnami/htdocs/paris-olympics-tickets/src/tickets'
 if not os.path.exists(pdf_dir):
     print(f"Création du dossier : {pdf_dir}")
     os.makedirs(pdf_dir)
