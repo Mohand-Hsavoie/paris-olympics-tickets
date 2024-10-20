@@ -1,6 +1,6 @@
 <?php
 // Chemin du fichier à télécharger (mettre à jour si nécessaire)
-$file = 'C:/xampp/htdocs/paris-olympics-tickets/src/tickets/ticket_' . $_GET['ticket_id'] . '.pdf';
+$file = 'var/www/html/paris-olympics-tickets/src/tickets/ticket_' . $_GET['ticket_id'] . '.pdf';
 
 // Vérifie si le fichier existe
 if (file_exists($file)) {
