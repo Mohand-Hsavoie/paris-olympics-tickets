@@ -5,5 +5,8 @@ Le projet est réalisé dans le cadre de l'obtention de mon Bachelor Développeu
 
 le Projet déployé  sur AWS amazon lightsail lamp php8:
 
-http://15.188.183.190/paris-olympics-tickets/
+http://15.188.183.190/paris-olympics-tickets/public/
+
+la page pour accéder au compte administrateur :
+http://15.188.183.190/paris-olympics-tickets/admin/admin_login.php
 
